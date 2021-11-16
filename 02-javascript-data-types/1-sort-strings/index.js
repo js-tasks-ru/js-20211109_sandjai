@@ -7,10 +7,10 @@
 export function sortStrings(arr, param = 'asc') {
 
     let newArr = arr.slice();
-    
+
 
     function compareFunc(a,b) {
-        return a.localeCompare(b, undefined, {caseFirst: 'upper'});
+        return a.localeCompare(b, ['gb', 'ru'], {caseFirst: 'upper'});
     }   
 
     if (param === 'asc') {
