@@ -10,22 +10,20 @@
 }
 
 export function createGetter(path) {
-
   const arr = path.split("."); 
   
   return (obj) => {
-    arr.forEach((item,i) => { 
+    let result = obj;
+    
+    for (const item of arr) { 
    
-     if (typeof obj === 'object') {
-      obj = obj[arr[i]];
-     }
-     else obj = undefined;
-    })
+     if (result === undefined) break;
 
-    return obj;
+     result = result[item];  
+    }
 
+    return result;
 
   }   
 }
 const getter = createGetter('category.title');
-console.log(getter(product)); 

@@ -4,8 +4,8 @@
  * @param {number} size - the allowed size of consecutive identical symbols
  * @returns {string} - the new string without extra symbols according passed size
  */
-export function trimSymbols(line,symbNum) {
-    const arr = line.split("");
+export function trimSymbols(string,size) {
+    const arr = string.split("");
     let counter=0,
     symb,
     newArr = [];
@@ -17,11 +17,11 @@ export function trimSymbols(line,symbNum) {
         counter = 0;
       }
   
-      if (counter < symbNum) {
+      if (counter < size) {
         newArr.push(item);
       }
 
-      if (!symbNum && (symbNum !== 0)) {
+      if (!size && (size !== 0)) {
         newArr = arr;
       }
   
@@ -29,7 +29,7 @@ export function trimSymbols(line,symbNum) {
       
     })
   
-   line = newArr.join("");
-    return line;   
+   string = newArr.join("");
+    return string;   
   
   }
