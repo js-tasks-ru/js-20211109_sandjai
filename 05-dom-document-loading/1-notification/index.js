@@ -31,7 +31,7 @@ export default class NotificationMessage {
     render() {
         const el = document.createElement('div');
         el.innerHTML = this.template;
-        //this.element = element;
+       
         this.element = el.firstChild;
     }
 

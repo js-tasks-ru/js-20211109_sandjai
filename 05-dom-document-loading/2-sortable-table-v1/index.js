@@ -28,7 +28,7 @@ export default class SortableTable {
     </div>`;
   }
 
-  getHeaderRow({id, title, sortable}) {
+  getHeaderRow({ id, title, sortable }) {
     return `
       <div class="sortable-table__cell" data-id="${id}" data-sortable="${sortable}">
         <span>${title}</span>
@@ -39,36 +39,38 @@ export default class SortableTable {
     `;
   }
 
-getTableBody() { 
-  return `
+  getTableBody() {
+    return `
   <div data-element="body" class="sortable-table__body">
     ${this.getTableRows(this.data)};
   </div>`
- 
-}
 
-getTableRows(data) {
-  return data.map(item => {
-    return `
+  }
+
+  getTableRows(data) {
+    return data.map(item => {
+      return `
   <a href="/products/3d-ochki-epson-elpgs03" class="sortable-table__row">
     ${this.getTableRow(item)}
   </a>
-`}) 
-  .join('');
-}
+`})
+      .join('');
+  }
 
-getTableRow(item) {
-  const cells = this.headerConfig.map(({id, template}) => { return {
-    id,
-    template
-  }})
+  getTableRow(item) {
+    const cells = this.headerConfig.map(({ id, template }) => {
+      return {
+        id,
+        template
+      }
+    })
 
-  return cells.map(({id, template}) => {
-    return template
-      ? template(item[id])
-      : ` <div class="sortable-table__cell">${item[id]}</div>`
-  }).join('');
-} 
+    return cells.map(({ id, template }) => {
+      return template
+        ? template(item[id])
+        : ` <div class="sortable-table__cell">${item[id]}</div>`
+    }).join('');
+  }
 
   render() {
     const el = document.createElement('div');
@@ -78,7 +80,6 @@ getTableRow(item) {
 
     this.subElements = this.getSubElements(element);
 
-    console.error('this.subElements', this.subElements);
   }
 
   getSubElements(element) {
@@ -122,33 +123,33 @@ getTableRow(item) {
 
     return arr.sort((a, b) => {
       switch (sortType) {
-      case 'number':
-        return direction * (a[field] - b[field]);
-      case 'string':
-        return direction * a[field].localeCompare(b[field], ['ru', 'en']);
-      default:
-        return direction * (a[field] - b[field]);
+        case 'number':
+          return direction * (a[field] - b[field]);
+        case 'string':
+          return direction * a[field].localeCompare(b[field], ['ru', 'en']);
+        default:
+          return direction * (a[field] - b[field]);
       }
     });
   }
 
 
-update(data) {
-  this.data = data;
-  this.subElements.body.innerHTML = this.getColumnBody(data);
-}
-
-
-remove() {
-  if (this.element) {
-  this.element.remove();
+  update(data) {
+    this.data = data;
+    this.subElements.body.innerHTML = this.getColumnBody(data);
   }
-}
 
-destroy() {       
-  this.remove();
-  this.element = null;
-}
+
+  remove() {
+    if (this.element) {
+      this.element.remove();
+    }
+  }
+
+  destroy() {
+    this.remove();
+    this.element = null;
+  }
 }
 
 
