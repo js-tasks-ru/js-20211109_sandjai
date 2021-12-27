@@ -67,15 +67,15 @@ export default class RangePicker {
       document.addEventListener('click', this._onDocumentClick, true);
   
       input.addEventListener('click', () => this._toggle());
-      selector.addEventListener('click', event => this.onSelectorClick(event));
+      selector.addEventListener('click', event => this._onSelectorClick(event));
     }
   
     _toggle() {
-      this.element.classList._toggle('rangepicker_open');
+      this.element.classList.toggle('rangepicker_open');
       this.renderDateRangePicker();
     }
   
-    onSelectorClick({target}) {
+    _onSelectorClick({target}) {
       if (target.classList.contains('rangepicker__cell')) {
         this.onRangePickerCellClick(target);
       }
